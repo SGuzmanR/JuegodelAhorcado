@@ -44,12 +44,6 @@ a {
     text-decoration: none;
 }
 
-hr {
-    border: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    height: 6vh;
-    width: 1px; 
-}
 
 /*--REUSABLE CSS--*/
 .container {
@@ -69,8 +63,10 @@ hr {
 /*--HEADER--*/
 header {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    gap: 8px;
     position: absolute;
     top: 0;
     left: 0;
@@ -80,6 +76,10 @@ header {
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: var(--principal-color-lighter);
     transition: 1s;
+}
+
+header img {
+    width: 90px;
 }
 
 header a {
@@ -106,6 +106,7 @@ header a:hover {
 .start_game h1 {
     font-size: 40px;
     margin-bottom: 1rem;
+    padding: 0 20px;
 }
 
 .start {
@@ -119,6 +120,11 @@ header a:hover {
 
 .start:hover {
     transform: scale(1.05);
+}
+
+.start_line {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    height: 100px;
 }
 
 .add_container {
@@ -192,7 +198,6 @@ canvas {
     border-radius: 8px;
     border: 1px solid #000;
     background-color: var(--color-white);
-    opacity: .9;
 }
 
 .new_game-popup {
@@ -309,8 +314,117 @@ footer {
     transform: scale(1.1);
 }
 
+.footer_line {
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    height: 6vh;
+    width: 1px; 
+}
+
+
+
+/*--Tablet Screen--*/
+@media screen and (max-width: 1000px) and (min-width: 550px){
+    .start_game {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .start_line {
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        height: 0;
+        width: 200px;
+    }
+
+    canvas {
+        width: 400px;
+        height: auto;
+    }
+
+    .keyboard {
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(8, 1fr);
+        width: 5rem;
+        gap: 5px;
+    }
+
+    .new_game-popup {
+        padding: 200px 200px;
+        width: auto;
+        height: auto;
+    }
+}
 
 /*--Mobile Screen--*/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 550px) {
+    /*--HEADER--*/
+    header {
+        flex-direction: column;
+        justify-content: center;
+    }
     
+    
+    /*--MAIN--*/
+    .start_game {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .start_line {
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        height: 0;
+        width: 200px;
+    }
+    
+    .add_container {
+        gap: 8px;
+    }
+
+    .add_container span {
+        padding: 0 40px;
+    }
+    
+    .add_word {
+        width: 15rem;
+    }
+    
+    .add_btn {
+        width: 15rem;
+    }
+    
+    canvas {
+        width: 250px;
+        height: auto;
+    }
+    
+    .user_input {
+        align-items: center;
+        justify-content: center;
+        gap: .8rem;
+        width: 6rem;
+        height: auto;
+    }
+    
+    .dashes {
+        padding: 10px 0;
+    }
+    
+    .keyboard {
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(4, 1fr);
+        width: 5rem;
+        gap: 5px;
+    }
+    
+    .new_game-popup {
+        padding: 100px 40px;
+        width: auto;
+        height: auto;
+    }
+
+    .hide {
+        display: none;
+    }    
 }
