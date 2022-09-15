@@ -48,7 +48,7 @@ const addWord = () => {
 
     if (newWord == "") {
         alert("Ingrese una palabra para continuar o presione el boton 'Empezar juego'");
-    } if (newWord.length <= 10) {
+    } if (newWord.length <= 10 && newWord !== "") {
         initializer();
         userInput.innerText = "";
         keyboard.classList.remove("hide");
@@ -57,8 +57,6 @@ const addWord = () => {
         chosenWord = newWord.toUpperCase();
         let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
         userInput.innerHTML = displayItem;
-    } else {
-        alert("Ingrese una palabra de MAXIMO 10 caracteres | No se aceptan numeros");
     }
 }
 
