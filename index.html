@@ -4,49 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/img/Logo2 White.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Juego Ahorcado | SGuzmanR</title>
 </head>
 <body>
     <header>
-        <img src="assets/img/Logo.png" alt="Logo Alura">
-        <a href="index.html">Inicio</a>
+        <a href="index.html"><img src="assets/img/Logo.png" alt="Logo Alura"></a>
     </header>
 
-    <div class="container">
-        <div id="start_game" class="start_game">
-            <div>
+    <main class="section">
+        <div id="start">
+            <div class="start-main">
                 <h1>Juego del Ahorcado</h1>
-                <button class="start" onclick="randomWord()">Empezar Juego</button>
+                <button class="start-main_btn" onclick="randomWord()">Empezar Juego</button>
             </div>
-            <hr class="start_line">
-            <div id="add_container" class="add_container">
-                <input type="text" name="addWord" id="add_word" class="add_word" placeholder="Ingrese su palabra aqui" required></input>
-                <span>Max. 10 caracteres | <b>SIN</b> caracteres especiales y <b>SIN</b> la letra Ñ</span>
-                <button class="add_btn" onclick="addWord()">Empezar con Palabra Personalizada</button>
+            <hr class="start-line">
+            <div id="start-add">
+                <input type="text" name="addWord" id="start-add_word" placeholder="Ingrese su palabra aqui" required></input>
+                <span>Max. 10 caracteres | <b>SIN</b> caracteres especiales, la letra Ñ y numeros</span>
+                <button class="start-add_btn" onclick="addWord()">Empezar con Palabra Personalizada</button>
             </div>
         </div>
-        <canvas id="canvas" class="hide"></canvas>
-        <div id="user_input" class="user_input"></div>
-        <div id="keyboard" class="keyboard"></div>
-        <div id="new_game-container" class="new_game-popup hide">
-          <div id="result_text"></div>
-          <button id="new_game-btn" onclick="window.location='index.html'">Volver a Inicio</button>
+
+        <div id="game">
+            <canvas id="canvas" class="hide"></canvas>
+            <div id="user-input" class="user-input"></div>
+            <div id="keyboard" class="keyboard"></div>
         </div>
-    </div>
+        <div id="new-game_container" class="new_game-popup hide">
+            <div id="result-text"></div>
+            <button id="new-game_btn" onclick="window.location='index.html'">Volver a Inicio</button>
+        </div>
+    </main>
 
     <footer>
-        <div id="footer">
-            <div id="brand">
-                <span id="brand_title">Develop by</span>
-                <img src="assets/img/Logo White.png" alt="Logo SGuzmanR" width="130px" height="auto">
-            </div>
-            <hr class="footer_line">
-            <div id="social_media">
-                <a href="#" class="icons"><img src="assets/img/Linkedin.png" alt="Logo Linkedin" width="23px"></a>
-                <a href="#" class="icons"><img src="assets/img/GitHub.png" alt="Logo Github" width="23px"></a>
-            </div>
+        <p>Develop by SGuzmanR</p>
+        <div id="social-media">
+            <a href="#" class="icons"><img class="icon1" src="assets/img/Linkedin.png" alt="Logo Linkedin" width="23px"></a>
+            <a href="#" class="icons"><img class="icon2" src="assets/img/GitHub.png" alt="Logo Github" width="20px"></a>
         </div>
     </footer>
     

@@ -1,53 +1,44 @@
 const keyboard = document.getElementById("keyboard");
-const startGame = document.getElementById("start_game");
-const addWordContainer = document.getElementById("add_word-container");
-const userInput = document.getElementById("user_input");
-const newGameContainer = document.getElementById("new_game-container");
-const newGameBtn = document.getElementById("new_game-btn");
+const startGame = document.getElementById("start");
+const addWordContainer = document.getElementById("start-add");
+const userInput = document.getElementById("user-input");
+const newGameContainer = document.getElementById("new-game_container");
+const newGameBtn = document.getElementById("new-game_btn");
 const canvas = document.getElementById("canvas");
-const resultText = document.getElementById("result_text");
+const resultText = document.getElementById("result-text");
 
-//Options
-let options = ["HTML", "Software", "Hardware", "Computador", "Codigo", "Editor", "Programa", "Mouse", "teclado", "pantalla", "lenguaje", "cable", "juego", "escritorio", "perfil", "trabajo", "programador", "dibujo", "matematicas", "algoritmo"];
 
-//Count
+let options = ["html", "software", "hardware", "computador", "codigo", "editor", "programa", "mouse", "teclado", "pantalla", "lenguaje", "cable", "juego", "escritorio", "perfil", "trabajo", "programador", "dibujo", "matematicas", "algoritmo", "botella"];
+
 let winCount = 0;
 let count = 0;
 let chosenWord = "";
 
 
-//Block all the Buttons
 const blocker = () => {
     let keyboardButtons = document.querySelectorAll(".keys");
-    //Disable keys
     keyboardButtons.forEach((button) => {
         button.disabled.true;
     });
     newGameContainer.classList.remove("hide");
 };
 
-
-//Random Word
 const randomWord = () => {
     initializer();
     userInput.innerText = "";
     keyboard.classList.remove("hide");
     startGame.classList.add("hide");
     canvas.classList.remove("hide");
-
     chosenWord = options[Math.floor(Math.random() * options.length)];
     chosenWord = chosenWord.toUpperCase();
     let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
     userInput.innerHTML = displayItem;
 };
 
-
-//Add Word
 const addWord = () => {
-    let newWord = document.getElementById("add_word").value;
-
+    let newWord = document.getElementById("start-add_word").value;
     if (newWord == "") {
-        alert("Ingrese una palabra para continuar o presione el boton 'Empezar juego'");
+        alert("Ingrese una palabra o presione el boton 'Empezar juego'");
     } if (newWord.length <= 10 && newWord !== "") {
         initializer();
         userInput.innerText = "";
@@ -57,11 +48,11 @@ const addWord = () => {
         chosenWord = newWord.toUpperCase();
         let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
         userInput.innerHTML = displayItem;
+    } if (newWord.length > 10) {
+        alert("Recuerde que la palabra tiene que ser MENOR a 10 caracteres")
     }
 }
 
-
-//Initial
 const initializer = () => {
     winCount = 0;
     count = 0;
@@ -72,11 +63,9 @@ const initializer = () => {
     keyboard.innerHTML = "";
     canvas.classList.add("hide");
 
-    //Keyboard
     for (let i = 65; i < 91; i++) {
         let btn = document.createElement("button");
         btn.classList.add("keys");
-        //Number to A-Z
         btn.innerText = String.fromCharCode(i);
         btn.addEventListener("click", () => {
             let array = chosenWord.split("");
@@ -85,10 +74,8 @@ const initializer = () => {
             if (array.includes(btn.innerText)) {
                 array.forEach((char, index) => {
                     if (char === btn.innerText) {
-                        //Replace dash with letter
                         dashes[index].innerText = char;
                         winCount += 1;
-                        //if winCount equals word length
                         if (winCount == array.length) {
                             canvas.classList.add("hide");
                             keyboard.classList.add("hide");
@@ -99,10 +86,8 @@ const initializer = () => {
                     }     
                 });
             } else {
-                //Lose count
                 count += 1;
                 drawMan(count);
-                //Count==6 (head, body, left arm, right arm, left leg, right leg)
                 if (count == 6) {
                     canvas.classList.add("hide");
                     keyboard.classList.add("hide");
@@ -111,19 +96,15 @@ const initializer = () => {
                     blocker();
                 }
             }
-            //Disable clicked button
             btn.disabled = true;
         });
         keyboard.append(btn);
     }
-    //Call to canvasCreator (for clearing previous canvas and creating initial canvas)
     let {initialDrawing} = canvasCreator();
-    //initialDrawing would draw the frame
     initialDrawing();
 };
 
 
-//Canvas
 const canvasCreator = () => {
     let context = canvas.getContext("2d");
     context.beginPath();
@@ -165,9 +146,7 @@ const canvasCreator = () => {
         drawLine(70, 80, 90, 110);
     };
 
-    //Initial drawing (Support Hangman)
     const initialDrawing = () => {
-        //Clear
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         //Bottom line
         drawLine(10, 130, 130, 130);
@@ -178,7 +157,6 @@ const canvasCreator = () => {
         //Small top line
         drawLine(70, 10, 70, 20);
     };
-
     return {initialDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg };
 };
 
